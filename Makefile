@@ -25,4 +25,4 @@ ps:
 .PHONY: proto
 proto:
 	cd proto && \
-	docker run -v `pwd`:/defs namely/protoc-all -f helloworld.proto -l go -o go
+	docker run --rm -v `pwd`:/defs namely/protoc-all -f helloworld.proto -l go -o go

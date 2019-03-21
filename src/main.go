@@ -1,14 +1,22 @@
 package main
 
 import (
-	"main/controllers"
-	"github.com/gin-gonic/gin"
+    "main/controllers"
+    "database/sql"
+    _ "github.com/go-sql-driver/mysql"
+
+    "github.com/gin-gonic/gin"
 )
 
 func main() {
-    router := gin.Default()
+    db, errs := sql.Open("mysql", "root:root@tcp(mysql:3306)/test")
+    if errs != nil {
+        panic(errs.Error())
+    }
+    defer db.Close()
 
-    controllers.Setup(router)
+    router := gin.Default()
+    controllers.Setup(router, db)
 
     router.GET("/ping", func(c *gin.Context) {
         c.JSON(200, gin.H{
