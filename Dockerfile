@@ -5,4 +5,5 @@ ADD . .
 
 ENV GO111MODULE=on
 
-CMD ["go", "run", "main.go"]
+RUN go get github.com/pilu/fresh
+CMD ["fresh"]
