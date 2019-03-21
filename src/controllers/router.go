@@ -1,11 +1,11 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"database/sql"
+	"github.com/gin-gonic/gin"
 )
 
 func Setup(router *gin.Engine, db *sql.DB) {
-	user := UserController{Router: router, DbClient: db}
+	user := UserController{Router: router, Connection: db}
 	user.Setup()
 }
